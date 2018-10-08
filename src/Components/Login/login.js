@@ -6,6 +6,12 @@ import styles from "./login.css";
 const FormItem = Form.Item;
 
 class Login extends React.Component {
+  state = {
+    username: "",
+    password: "",
+    response: ""
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
