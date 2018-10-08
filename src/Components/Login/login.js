@@ -19,6 +19,26 @@ class Login extends React.Component {
         console.log("Received values of form", values);
       }
     });
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      body: JSON.stringify(this.state),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .catch(error => console.log("Error: ", error))
+      .then(response => {
+        this.setState({ response });
+        this.state.response.token
+          ? localStorage.setItem(
+              "token",
+              JSON.stringify({
+                token: this.state.response.token,
+                expires: new Date().getTime() + this.state.response.expiresIn
+              })
+            )
+          : localStorage.setItem("error", this.state.response.error);
+        this.props.history.push("/");
+      });
   };
 
   render() {
