@@ -56,6 +56,9 @@ class Login extends React.Component {
                 <Icon type="user" style={{ color: "rgba(0,0,0,0.25)" }} />
               }
               placeholder="Username"
+              onChange={event =>
+                this.setState({ username: event.target.value })
+              }
             />
           )}
         </FormItem>
@@ -70,6 +73,9 @@ class Login extends React.Component {
               }
               type="password"
               placeholder="Password"
+              onChange={event =>
+                this.setState({ password: event.target.value })
+              }
             />
           )}
         </FormItem>
